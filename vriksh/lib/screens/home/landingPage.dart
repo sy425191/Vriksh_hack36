@@ -12,13 +12,16 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+    setState(() {
+      _selectedIndex = 0;
+    });
   }
 
   @override
