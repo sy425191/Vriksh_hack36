@@ -10,7 +10,7 @@ class treeDensity(Resource):
 class analyseLatLong(Resource):
     def get(self, lat, lng):
         data = {}
-        data['pollution'] = get_weather_data(lat, lng).decode('ASCII')
+        data['pollution'] = get_weather_data(lat, lng)
         data['tree_cover'] = predictFromModel(lat, lng)
         # data['population_density'] = get_population_density(lat, lng)
         data['region'] = cal_region(data['tree_cover'])
