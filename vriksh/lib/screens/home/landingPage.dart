@@ -81,7 +81,7 @@ class _LandingPageState extends State<LandingPage> {
           ),
           BottomNavyBarItem(
               icon: const Icon(Icons.apps),
-              title: const Text('Home'),
+              title: const Text('Dashboard'),
               activeColor: Colors.purpleAccent),
           BottomNavyBarItem(
             icon: const Icon(Icons.people_sharp),

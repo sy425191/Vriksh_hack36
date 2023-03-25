@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:vriksh/screens/map/newCampaign.dart';
 
 class SelectLocation extends StatefulWidget {
   const SelectLocation({super.key});
@@ -12,6 +13,7 @@ class SelectLocation extends StatefulWidget {
 
 class _SelectLocationState extends State<SelectLocation> {
   late GoogleMapController mapController;
+  int _showBottomSheet = 0;
 
   final LatLng _center = const LatLng(25.491336, 81.863232);
   Set<Marker> _markers = {};
@@ -76,7 +78,11 @@ class _SelectLocationState extends State<SelectLocation> {
               // if marker is not selected
               if (!_markers.isEmpty)
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      _showBottomSheet = 1;
+                    });
+                  },
                   child: const Text("Analyse"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -106,148 +112,189 @@ class _SelectLocationState extends State<SelectLocation> {
             myLocationEnabled: true,
           ),
         ),
-        Container(
-          height: 220,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          padding: EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 5,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Text("hi"),
-                ],
+        _showBottomSheet == 0
+            ? Container()
+            : Container(
+                height: 220,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          width: 200,
+                          height: 100,
+                          margin: EdgeInsets.only(
+                            top: 20,
+                          ),
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            color: Colors.red,
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "Red Zone",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(200, 50),
+                          ),
+                          onPressed: () => {
+                            // send to campaign page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NewCampaign(),
+                              ),
+                            ),
+                          },
+                          child: Text("Start Campaign"),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () => {
+                            // send to tips page for improving the environment
+                          },
+                          child: Icon(Icons.info, color: Colors.black),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: const EdgeInsets.all(5),
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              "AQI:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              " 5", // get from api
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          width: 100,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 5,
+                          ),
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              "PM 2.5:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              " 98.24", // get from api
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          width: 100,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 5,
+                          ),
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              "PM 10:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              " 113.16", // get from api
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          width: 100,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 5,
+                          ),
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              "CO:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              " 767.71", // get from api
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () => {
-                      // send to tips page for improving the environment
-                    },
-                    child: Icon(Icons.info, color: Colors.black),
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: const EdgeInsets.all(5),
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        "AQI:",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        " 5", // get from api
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                    width: 100,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 5,
-                    ),
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        "PM 2.5:",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        " 98.24", // get from api
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                    width: 100,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 5,
-                    ),
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        "PM 10:",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        " 113.16", // get from api
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                    width: 100,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 5,
-                    ),
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        "CO:",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        " 767.71", // get from api
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
       ],
     );
   }
