@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vriksh/auth/welcome.dart';
 import 'package:vriksh/screens/home/homeApps.dart';
 import 'package:vriksh/screens/map/SelectAddress.dart';
 
@@ -37,14 +38,15 @@ class _LandingPageState extends State<LandingPage> {
           child: Padding(
             padding: const EdgeInsets.only(
               top: 35,
-              left: 10,
-              right: 10,
+              left: 2,
+              right: 2,
             ),
             child: PageView(
               controller: _pageController,
               onPageChanged: (index) {
                 setState(() => _selectedIndex = index);
               },
+              physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
                 Container(
                   child: SelectLocation(),
@@ -53,10 +55,10 @@ class _LandingPageState extends State<LandingPage> {
                   child: HomeApps(),
                 ),
                 Container(
-                  color: Colors.green,
+                  color: Color.fromARGB(255, 194, 255, 184),
                 ),
                 Container(
-                  color: Colors.green,
+                  child: WelcomeScreen(),
                 ),
               ],
             ),
@@ -82,13 +84,14 @@ class _LandingPageState extends State<LandingPage> {
                 title: const Text('Home'),
                 activeColor: Colors.purpleAccent),
             BottomNavyBarItem(
+              icon: const Icon(Icons.people_sharp),
+              title: const Text('Community'),
+              activeColor: Color.fromARGB(255, 50, 131, 37),
+            ),
+            BottomNavyBarItem(
                 icon: const Icon(Icons.wallet),
                 title: const Text('Wallet'),
                 activeColor: Colors.pink),
-            BottomNavyBarItem(
-                icon: const Icon(Icons.leaderboard),
-                title: const Text('Leaderboard'),
-                activeColor: Colors.blue),
           ],
         ));
   }

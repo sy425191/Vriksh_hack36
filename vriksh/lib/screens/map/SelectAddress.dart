@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SelectLocation extends StatefulWidget {
@@ -11,19 +10,63 @@ class SelectLocation extends StatefulWidget {
 }
 
 class _SelectLocationState extends State<SelectLocation> {
-  static final LatLng _kMapCenter =
-      LatLng(19.018255973653343, 72.84793849278007);
+  late GoogleMapController mapController;
 
-  static final CameraPosition _kInitialPosition =
-      CameraPosition(target: _kMapCenter, zoom: 11.0, tilt: 0, bearing: 0);
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+  Set<Marker> _markers = {};
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  LatLng _selectedLocation = const LatLng(45.521563, -122.677433);
+
+  void onTap(LatLng location) {
+    setState(() {
+      _selectedLocation = location;
+    });
+    _markers.add(
+      Marker(
+        markerId: const MarkerId('1'),
+        position: location,
+        infoWindow: const InfoWindow(
+          title: 'Selected Location',
+        ),
+        icon: BitmapDescriptor.defaultMarker,
+      ),
+    );
+  }
+
+  void onCameraMove(CameraPosition position) {
+    if (_markers.isNotEmpty) {
+      setState(() {
+        _markers = {};
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GoogleMap(
-        initialCameraPosition: _kInitialPosition,
-        zoomControlsEnabled: false,
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: GoogleMap(
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 11.0,
+            ),
+            zoomControlsEnabled: false,
+            zoomGesturesEnabled: false,
+            onMapCreated: _onMapCreated,
+            mapType: MapType.hybrid,
+            // show places
+            compassEnabled: true,
+            onTap: onTap,
+            // onCameraMove: onCameraMove,
+            markers: _markers,
+          ),
+        )
+      ],
     );
   }
 }
