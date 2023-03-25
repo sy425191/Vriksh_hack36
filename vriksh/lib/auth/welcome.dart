@@ -71,13 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const SelectLocation(),
-                    //   ),
-                    // );
-                    print('Get Started');
+                    // google oauth2 login
                   },
                   child: Row(
                     children: [

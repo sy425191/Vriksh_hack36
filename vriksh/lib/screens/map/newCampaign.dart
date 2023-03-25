@@ -117,7 +117,7 @@ class _NewCampaignState extends State<NewCampaign> {
                 child: Container(
                   height: 25,
                   width: MediaQuery.of(context).size.width - 100,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         color: Colors.grey,

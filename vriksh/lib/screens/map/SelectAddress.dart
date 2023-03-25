@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:vriksh/apiServices.dart';
 import 'package:vriksh/screens/map/newCampaign.dart';
 
 class SelectLocation extends StatefulWidget {
@@ -15,6 +19,13 @@ class _SelectLocationState extends State<SelectLocation> {
   late GoogleMapController mapController;
   int _showBottomSheet = 0;
 
+  var aqi = 0;
+  var pm2_5 = 0;
+  var pm10 = 0;
+  var co = 0;
+
+  var zone = "RED";
+
   final LatLng _center = const LatLng(25.491336, 81.863232);
   Set<Marker> _markers = {};
 
@@ -23,7 +34,6 @@ class _SelectLocationState extends State<SelectLocation> {
   }
 
   LatLng _selectedLocation = const LatLng(25.491336, 81.863232);
-  LatLng _userLocation = const LatLng(25.491336, 81.863232);
 
   void onTap(LatLng location) {
     setState(() {
@@ -54,6 +64,20 @@ class _SelectLocationState extends State<SelectLocation> {
   //   print("Getting user Location");
   //   print(loc);
   // }
+  late var res = "";
+  void _analyse() async {
+    // get the data from api
+    if (_showBottomSheet == 0) {
+      res = await ApiServices().analyseLatLong(_selectedLocation).toString();
+      setState(() {
+        _showBottomSheet = 1;
+      });
+    } else {
+      setState(() {
+        _showBottomSheet = 0;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +103,10 @@ class _SelectLocationState extends State<SelectLocation> {
               if (!_markers.isEmpty)
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      _showBottomSheet = 1;
-                    });
+                    _analyse();
                   },
-                  child: const Text("Analyse"),
+                  child:
+                      _showBottomSheet == 0 ? Text("Analyse") : Text("Close"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                   ),
@@ -184,15 +207,15 @@ class _SelectLocationState extends State<SelectLocation> {
                           ),
                         ),
                         Row(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "AQI:",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
-                              " 5", // get from api
+                              " ${aqi}", // get from api
                               style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
@@ -215,16 +238,16 @@ class _SelectLocationState extends State<SelectLocation> {
                           ),
                         ),
                         Row(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "PM 2.5:",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
-                              " 98.24", // get from api
-                              style: TextStyle(
+                              " ${pm2_5}", // get from api
+                              style: const TextStyle(
                                 fontStyle: FontStyle.italic,
                               ),
                             ),
@@ -245,16 +268,16 @@ class _SelectLocationState extends State<SelectLocation> {
                           ),
                         ),
                         Row(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "PM 10:",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
-                              " 113.16", // get from api
-                              style: TextStyle(
+                              " ${pm10}", // get from api
+                              style: const TextStyle(
                                 fontStyle: FontStyle.italic,
                               ),
                             ),
@@ -275,16 +298,16 @@ class _SelectLocationState extends State<SelectLocation> {
                           ),
                         ),
                         Row(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "CO:",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
-                              " 767.71", // get from api
-                              style: TextStyle(
+                              " ${co}", // get from api
+                              style: const TextStyle(
                                 fontStyle: FontStyle.italic,
                               ),
                             ),

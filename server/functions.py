@@ -9,3 +9,10 @@ def get_weather_data(lat, long):
     # print(weather_data_link)
     weather_data = urllib.request.urlopen(weather_data_link).read()
     return weather_data
+
+def get_population_density(lat, long):
+    population_density_endpoint = "https://ringpopulationsapi.azurewebsites.net/api/globalringpopulations?latitude=${lat}5&longitude=${long}&distance_km=1"
+
+    population_data = urllib.request.urlopen(population_density_endpoint).read()
+    population_data = json.loads(population_data)
+    return population_data

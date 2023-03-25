@@ -23,7 +23,7 @@ def give_raw_image(lat, lon):
     
     img = urllib.request.urlretrieve(output_images_link, 'output/temp.jpg')
     img = Image.open('output/temp.jpg')
-    img = img.resize((160, 160))
+    img = img.resize((320, 320))
     # print(img)
     img = np.array(img)
     img = np.expand_dims(img, 0)
@@ -63,7 +63,7 @@ def predictFromModel(lat, long):
     focal_loss = sm.losses.CategoricalFocalLoss()
     total_loss = dice_loss + (1 * focal_loss)
     # load the model
-    model = load_model('server/satellite_160x160.h5', custom_objects=({'dice_loss_plus_1focal_loss': total_loss, 
+    model = load_model('satellite_segmentation.h5', custom_objects=({'dice_loss_plus_1focal_loss': total_loss, 
                                           'jaccard_coef': jaccard_coef}))
     # predict the output
 

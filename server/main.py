@@ -25,8 +25,9 @@ api.add_resource(User,'/user/<string:id>')
 api.add_resource(OAuth,'/oauth')
 api.add_resource(getPollution,'/pollution/<float:lat>/<float:lng>')
 api.add_resource(treeDensity,'/tree/<float:lat>/<float:lng>')
+api.add_resource(analyseLatLong,'/analyseLatLong/<float:lat>/<float:lng>')
 api.add_resource(createCampaign, '/createCampaign')
 
 
 if __name__=='__main__':
-	app.run(debug=True)
+	app.run(debug=True, host="192.168.0.106")

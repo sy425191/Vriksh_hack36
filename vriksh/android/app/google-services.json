@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608456635501",
+    "project_id": "hack36-7fa2b",
+    "storage_bucket": "hack36-7fa2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608456635501:android:bb659224846d533efbbb64",
+        "android_client_info": {
+          "package_name": "com.example.vriksh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608456635501-731kn1pvducul16295e51rmv995flqlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRKuUOywJlqEP1WBZub6tJPctrSxQGZdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608456635501-731kn1pvducul16295e51rmv995flqlo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
