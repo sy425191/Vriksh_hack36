@@ -49,6 +49,9 @@ class _SelectLocationState extends State<SelectLocation> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          child: Text('Selected Location: $_selectedLocation'),
+        ),
         Expanded(
           child: GoogleMap(
             initialCameraPosition: CameraPosition(
