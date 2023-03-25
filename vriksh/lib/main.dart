@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:vriksh/auth/welcome.dart';
+import 'package:vriksh/screens/home/homeApps.dart';
 import 'package:vriksh/screens/home/landingPage.dart';
 import 'package:vriksh/screens/utils/splashScreen.dart';
 
