@@ -12,6 +12,13 @@ class HomeApps extends StatefulWidget {
 }
 
 class HomeAppsState extends State<HomeApps> {
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() async {}
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -37,21 +44,7 @@ class HomeAppsState extends State<HomeApps> {
               horizontal: 10,
             ),
             child: Column(
-              children: [
-                Text(
-                  "Your Drives",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                CampainBox(),
-                CampainBox(),
-                CampainBox(),
-                CampainBox(),
-              ],
+              children: [],
             ),
           )
         ],
