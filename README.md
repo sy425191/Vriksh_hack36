@@ -5,10 +5,10 @@
 <a href="https://hack36.com"> <img src="https://i.postimg.cc/RFFWF4vg/built-at-hack.jpg" height=24px> </a>
 
 ## Demo Video Link
-<a href=""> Never Gonna Give You Up </a>
+<a href="https://drive.google.com/file/d/1k2GqkmjFN3XWBic27475PwrVtC3rUWA2/view?usp=sharing"> Never Gonna Give You Up </a>
 
 ## PPT Link
-<a href=""> Never Gonna Let You Down </a> 
+<a href="https://docs.google.com/presentation/d/1tMhuQYYuGl49_xdrHt101ejDG3WM3LV6/edit?usp=sharing&ouid=105158578770336180851&rtpof=true&sd=true"> Never Gonna Let You Down </a> 
 
 ## Table of Contents:
   * [Introduction](#Introduction)
