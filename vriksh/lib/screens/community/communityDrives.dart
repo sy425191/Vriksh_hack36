@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../home/campainBox.dart';
+
 class CommunityDrives extends StatefulWidget {
   const CommunityDrives({super.key});
 
@@ -13,7 +15,25 @@ class _CommunityDrivesState extends State<CommunityDrives> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Hi"),
+      padding: EdgeInsets.symmetric(
+        vertical: 5,
+        horizontal: 10,
+      ),
+      child: Column(
+        children: const [
+          SizedBox(
+            height: 10,
+          ),
+          Text("Recent Published Drives"),
+          SizedBox(
+            height: 10,
+          ),
+          CampainBox(),
+          CampainBox(),
+          CampainBox(),
+          CampainBox(),
+        ],
+      ),
     );
   }
 }

@@ -58,9 +58,9 @@ class _LandingPageState extends State<LandingPage> {
               Container(
                 child: CommunityDrives(),
               ),
-              Container(
-                color: Color.fromARGB(255, 194, 255, 184),
-              ),
+              // Container(
+              //   color: Color.fromARGB(255, 194, 255, 184),
+              // ),
             ],
           ),
         ),
@@ -88,10 +88,10 @@ class _LandingPageState extends State<LandingPage> {
             title: const Text('Community'),
             activeColor: Color.fromARGB(255, 50, 131, 37),
           ),
-          BottomNavyBarItem(
-              icon: const Icon(Icons.wallet),
-              title: const Text('Wallet'),
-              activeColor: Colors.pink),
+          // BottomNavyBarItem(
+          //     icon: const Icon(Icons.wallet),
+          //     title: const Text('Wallet'),
+          //     activeColor: Colors.pink),
         ],
       ),
     );

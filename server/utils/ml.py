@@ -10,12 +10,18 @@ import numpy as np
 import matplotlib.image
 
 def give_raw_image(lat, lon):
-    lat_start = str(lat-0.0020)
-    lat_end = str(lat+0.0020)
-    lon_start = str(lon-0.0023)
-    lon_end = str(lon+0.0023)
+    # old
+    # lat_start = str(lat-0.0020)
+    # lat_end = str(lat+0.0020)
+    # lon_start = str(lon-0.0023)
+    # lon_end = str(lon+0.0023)
 
-    url = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/[" + lon_start  + ","+ lat_start  +","+ lon_end  +","+ lat_end  +"]/640x640?access_token=pk.eyJ1Ijoic2F1cmFiaHlhZGF2MTEiLCJhIjoiY2ttb2Nkc3dqMjNlYTMxcWsxbHJjcTRuaiJ9.UOWQ0mcizgwi6WnHwcg0ew"
+    lat_start = str(lat-0.0030)
+    lat_end = str(lat+0.0030)
+    lon_start = str(lon-0.0031)
+    lon_end = str(lon+0.0031)
+
+    url = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/[" + lon_start  + ","+ lat_start  +","+ lon_end  +","+ lat_end  +"]/960x960?access_token=pk.eyJ1Ijoic2F1cmFiaHlhZGF2MTEiLCJhIjoiY2ttb2Nkc3dqMjNlYTMxcWsxbHJjcTRuaiJ9.UOWQ0mcizgwi6WnHwcg0ew"
     output_images_link = url
 
     # if not os.path.exists('output'):
@@ -23,7 +29,7 @@ def give_raw_image(lat, lon):
     
     img = urllib.request.urlretrieve(output_images_link, 'output/temp.jpg')
     img = Image.open('output/temp.jpg')
-    img = img.resize((160, 160))
+    img = img.resize((320, 320))
     # print(img)
     img = np.array(img)
     img = np.expand_dims(img, 0)
@@ -63,7 +69,7 @@ def predictFromModel(lat, long):
     focal_loss = sm.losses.CategoricalFocalLoss()
     total_loss = dice_loss + (1 * focal_loss)
     # load the model
-    model = load_model('server/satellite_160x160.h5', custom_objects=({'dice_loss_plus_1focal_loss': total_loss, 
+    model = load_model('satellite_segmentation.h5', custom_objects=({'dice_loss_plus_1focal_loss': total_loss, 
                                           'jaccard_coef': jaccard_coef}))
     # predict the output
 
