@@ -11,7 +11,7 @@
 <a href=""> Never Gonna Let You Down </a> 
 
 ## Table of Contents:
-  * <a href=""> Introduction
+  * [Introduction](# Introduction)
   * Implementation
   * Tech Stack
   * Features
