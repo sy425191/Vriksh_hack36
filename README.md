@@ -25,7 +25,7 @@
   Vriksh performs satellite image segmentation based on U-Net Deep Learning model. The model is trained to predict the tree cover density from the satellite image of the selected region. The training dataset uses satellite images and its' masked images, dividing the image objects into "trees" and "not-trees". Based on the population density and the predicted tree cover percentage, the selected region can be categorised into three zones: green,orange,red. Green zone signifies that the tree cover density is having a healthy balance with average carbon footprint of human population . Orange signifies that the balance is moderate, which calls for future actions to maintain the balance. Red signifies that there is serious imbalance in the selected region. This calls for immediate action. 
   
 ### Tech Stack
-  1) Machine Learning (U-Net Model)
+  1) Deep Learning (U-Net Model)
   2) Google Colab
   3) Flutter
   4) Flask
