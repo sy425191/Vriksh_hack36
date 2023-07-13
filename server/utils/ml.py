@@ -71,6 +71,9 @@ def predictFromModel(lat, long):
     # load the model
     model = load_model('satellite_segmentation.h5', custom_objects=({'dice_loss_plus_1focal_loss': total_loss, 
                                           'jaccard_coef': jaccard_coef}))
+    # model = tensorflow.keras.models.load_mode('satellite_segmentation.h5', compile=False)
+    # model.compile(custom_objects=({'dice_loss_plus_1focal_loss': total_loss, 
+    #                                       'jaccard_coef': jaccard_coef}))
     # predict the output
 
     output = model.predict(img)

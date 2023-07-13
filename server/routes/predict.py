@@ -17,6 +17,7 @@ class analyseLatLong(Resource):
         return (data)
 
 def cal_region(tree_cover):
+    print(tree_cover)
     if tree_cover <= 0.06:
         return "RED"
     elif tree_cover <= 0.18:
